@@ -46,6 +46,12 @@ Include in your output the name of the court, and the name of the member
 formatted as a single column. Ensure no duplicate data, and order by
 the member name. */
 
+SELECT DISTINCT CONCAT_WS(' ', firstname, surname) AS full_name, name
+FROM Bookings
+JOIN Facilities ON Bookings.facid = Facilities.facid
+JOIN Members ON Bookings.memid = Members.memid
+WHERE Bookings.facid IN (0,1)
+ORDER BY full_name
 
 /* Q8: How can you produce a list of bookings on the day of 2012-09-14 which
 will cost the member (or guest) more than $30? Remember that guests have
